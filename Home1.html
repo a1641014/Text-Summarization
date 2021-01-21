@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;">
+<head>
+	<title>Quick summary</title>
+<link rel="stylesheet" type="text/css" href="/static/Home1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background: linear-gradient(to right, #0083B0, #00B4DB)" >
+<section>
+  <div class="container p-5">
+    <!-- For demo purpose -->
+    <div class="row mb-5 text-center text-white">
+      <div class="col-lg-10 mx-auto">
+        <h1 class="display-4" style="margin-top: -15px">IN SHORT</h1>
+        <p class="lead">Concise. Precise.</p>
+      </div>
+    </div>
+    <!-- End -->
+
+    <div class="row"  style="margin-left: -405px;width: 1000px;">
+      <div class="col-lg-5 mx-auto">
+      	<form method="post" enctype = "multipart/form-data" action="/extraction">
+        <div class="p-5 bg-white shadow rounded-lg">
+        <p class="lead" style="margin-top: -50px;margin-left: 100px;color: black">Upload Image</p>
+		<img id="output" src="https://res.cloudinary.com/mhmd/image/upload/v1557366994/img_epm3iz.png" style="margin-top: 35px" alt="" width="200" class="d-block mx-auto mb-4 rounded-pill">
+
+          <!-- Default bootstrap file upload
+
+          <h6 class="text-center mb-4 text-muted">
+            You can use default Bootstrap file upload
+          </h6>
+
+          <div class="custom-file overflow-hidden rounded-pill mb-5">
+            <input id="customFile" type="file" class="custom-file-input rounded-pill">
+            <label for="customFile" class="custom-file-label rounded-pill">Choose file</label>
+          </div>
+
+          <h6 class="text-center mb-4 text-muted">
+            Or a custom button that launches file browser
+          </h6>
+          -->
+          <!-- Custom bootstrap upload file-->
+          <label for="imageupload" class="file-upload btn btn-primary btn-block rounded-pill shadow" style="height: 44px;"><i class="fa fa-upload mr-2"></i>Browse for file ...
+                        <input id="imageupload" name="imageupload" accept="image/*" type="file" onchange="loadFile(event)">
+                    </label>
+
+          <button type="submit" class="btn btn-primary" style="margin-left: 100px;margin-top: 30px;" onchange="changedes(event)">Extract</button>
+          <!-- End -->
+        </form>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="row1" style="margin-left: 20px;width: 1000px;margin-top: -15px">
+      <div class="col-lg-5 mx-auto">
+        <form method="post" enctype = "multipart/form-data" action="/summary">
+        <div class="p-5 bg-white shadow rounded-lg" style="margin-top: -440px;">
+        {% if text %}
+        	<p class="lead" style="margin-top: -45px;margin-left: 100px;">Extracted Text </p>
+        	<p id="extracttext" name="extracttext" >{{ text }}</p>
+        {% else %}
+        	<p class="lead" style="margin-top: -45px;margin-left: 100px;">Extracted Text</p>
+        {% endif %}
+          <!-- Default bootstrap file upload
+
+          <h6 class="text-center mb-4 text-muted">
+            You can use default Bootstrap file upload
+          </h6>
+
+          <div class="custom-file overflow-hidden rounded-pill	 mb-5">
+            <input id="customFile" type="file" class="custom-file-input rounded-pill">
+            <label for="customFile" class="custom-file-label rounded-pill">Choose file</label>
+          </div>
+
+          <h6 class="text-center mb-4 text-muted">
+            Or a custom button that launches file browser
+          </h6>
+          -->
+          <!-- Custom bootstrap upload file-->
+          
+          <button type="submit" class="btn btn-primary" style="margin-left: 100px;margin-top: 30px;">Summarize</button>
+          <!-- End -->
+          <!-- End -->
+      </form>
+        </div>
+      </div>
+    </div>
+    <div class="row"  id ="row2" style="margin-left: 470px;width: 730px;">
+      <div class="col-lg-5 mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg" style="margin-top: -440px;width: 390px;margin-left: 50px;">
+		{% if text1 %}
+        	<p id="sum_text" name="sum_text" class="lead" style="margin-top: -45px;margin-left: 100px;">Summary </p>
+        	<p>{{ text1 }}</p>
+        {% else %}
+        	<p id="sum_text" name="sum_text" class="lead" style="margin-top: -45px;margin-left: 100px;">Summary</p>
+        {% endif %}
+        	
+          <!-- Default bootstrap file upload
+
+          <h6 class="text-center mb-4 text-muted">
+            You can use default Bootstrap file upload
+          </h6>
+
+          <div class="custom-file overflow-hidden rounded-pill	 mb-5">
+            <input id="customFile" type="file" class="custom-file-input rounded-pill">
+            <label for="customFile" class="custom-file-label rounded-pill">Choose file</label>
+          </div>
+
+          <h6 class="text-center mb-4 text-muted">
+            Or a custom button that launches file browser
+          </h6>
+          -->
+          <!-- Custom bootstrap upload file-->
+       
+          <!-- End -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+	image.width="250";
+	document.getElementById('row1').style.marginTop="70px"
+	document.getElementById('row1').style.marginTop="72px"
+};
+var changedes = function(event) {
+	document.getElementById('row2').style.marginTop="-973px"
+};
+</script>
+</html>
